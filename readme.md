@@ -43,7 +43,9 @@ One side to D2, the other to GND (using `INPUT_PULLUP` in code).
 ## Demo video
 The following video demonstrates how this project works, including hardware setup and user interaction.
 
-[Simulation Video](/material/simulation.webm)
+[Simulation Video in this Repo](/material/simulation.webm)
+
+[Simulation Video on YouTube](https://www.youtube.com/watch?v=ukyB9MxYGHE)
 
 ## Configuration
 
