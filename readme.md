@@ -29,12 +29,21 @@ This project is an Arduino-based arithmetic quiz generator using an I2C LCD disp
 Push button:  
 One side to D2, the other to GND (using `INPUT_PULLUP` in code).
 
+![Hardware Wiring](/material/Arithmetic-Generator.png)
+
+[BRD file](/material/Arithmetic-Generator.brd)
+
 ## Usage
 
 1. Connect the hardware as described above.
 2. Upload the code in `LCD_MATH.ino` to your Arduino.
 3. The LCD will display a random math problem.
 4. Press the button to reveal the answer, then press again for the next problem.
+
+## Demo video
+The following video demonstrates how this project works, including hardware setup and user interaction.
+
+[Simulation Video](/material/simulation.webm)
 
 ## Configuration
 
