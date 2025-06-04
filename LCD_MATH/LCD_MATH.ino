@@ -12,6 +12,8 @@
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
+typedef void (*TestFunc)();
+
 void wait_button_press() {
   bool buttonPressed = false;
 
@@ -53,38 +55,16 @@ void setup() {
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
 
-  // 建立可用測試項目的陣列
-  uint8_t testOptions[4] = {TEST_PLUS, TEST_MINUS, TEST_MULTIPLY, TEST_DIVIDE};
-  uint8_t availableTests[4];
+  
+  TestFunc tests[4];
   uint8_t count = 0;
-
-  // 收集啟用的測試項目
-  for (uint8_t i = 0; i < 4; i++) {
-    if (testOptions[i]) {
-      availableTests[count++] = i;
-    }
-  }
-
+  if (TEST_PLUS)      tests[count++] = generate_Plus;
+  if (TEST_MINUS)     tests[count++] = generate_Minus;
+  if (TEST_MULTIPLY)  tests[count++] = generate_Multiply;
+  if (TEST_DIVIDE)    tests[count++] = generate_Division;
   if (count > 0) {
-    // 隨機選擇一種啟用的測試項目
-    uint8_t selectedTest = availableTests[random(count)];
-
-    switch (selectedTest) {
-      case 0:
-        generate_Plus();
-        break;
-      case 1:
-        generate_Minus();
-        break;
-      case 2:
-        generate_Multiply();
-        break;
-      case 3:
-        generate_Division();
-        break;
-    }
+    tests[random(count)]();
   } else {
-    // 如果沒有測試被啟用
     lcd.setCursor(2, 0);
     lcd.print("No test enabled");
   }
