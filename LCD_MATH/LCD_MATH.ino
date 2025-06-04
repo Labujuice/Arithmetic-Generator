@@ -1,5 +1,5 @@
-#include <Wire.h> // I2C程式庫
-#include <LiquidCrystal_I2C.h> // LCD_I2C模組程式庫
+#include <LiquidCrystal_I2C.h>
+#include <Wire.h>
 
 #define Number_Limit 20
 
@@ -8,10 +8,9 @@
 #define TEST_MULTIPLY 1
 #define TEST_DIVIDE 0
 
-#define BUTTON_PIN 2 //D2
+#define BUTTON_PIN 2  // D2
 
-// LCD I2C位址，默認為0x27或0x3F，依據背板的晶片不同而有差異，16、2為LCD顯示器大小。
-LiquidCrystal_I2C lcd(0x27, 16, 2); 
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void wait_button_press() {
   bool buttonPressed = false;
@@ -31,7 +30,7 @@ void generate_Plus() {
   uint32_t number_A = random(Number_Limit);
   uint32_t number_B = random(Number_Limit);
   lcd.setCursor(2, 0);
-  lcd.print("Math Test!"); 
+  lcd.print("Math Test!");
   lcd.setCursor(2, 1);
   lcd.print(String(number_A) + "+" + String(number_B) + "=?");
 
@@ -45,7 +44,7 @@ void generate_Minus() {
   uint32_t number_A = random(Number_Limit);
   uint32_t number_B = random(number_A);
   lcd.setCursor(2, 0);
-  lcd.print("Math Test!"); 
+  lcd.print("Math Test!");
   lcd.setCursor(2, 1);
   lcd.print(String(number_A) + "-" + String(number_B) + "=?");
 
@@ -59,7 +58,7 @@ void generate_Multiply() {
   uint32_t number_A = random(Number_Limit) % 10;
   uint32_t number_B = random(Number_Limit) % 10;
   lcd.setCursor(2, 0);
-  lcd.print("Math Test!"); 
+  lcd.print("Math Test!");
   lcd.setCursor(2, 1);
   lcd.print(String(number_A) + "x" + String(number_B) + "=?");
 
@@ -70,7 +69,7 @@ void generate_Multiply() {
 }
 
 void setup() {
-  // 初始化LCD
+  // Initialize the LCD
   lcd.init();
   lcd.backlight();
   randomSeed(analogRead(0));
@@ -79,7 +78,7 @@ void setup() {
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
 
-// 建立可用測試項目的陣列
+  // 建立可用測試項目的陣列
   uint8_t testOptions[4] = {TEST_PLUS, TEST_MINUS, TEST_MULTIPLY, TEST_DIVIDE};
   uint8_t availableTests[4];
   uint8_t count = 0;
@@ -116,7 +115,4 @@ void setup() {
   }
 }
 
-
-void loop() {
-
-}
+void loop() {}
