@@ -26,47 +26,20 @@ void wait_button_press() {
   }
 }
 
-void generate_Plus() {
-  uint32_t number_A = random(Number_Limit);
-  uint32_t number_B = random(Number_Limit);
+void generate_Arithmetic(const char* op, uint32_t a, uint32_t b, uint32_t answer) {
   lcd.setCursor(2, 0);
   lcd.print("Math Test!");
   lcd.setCursor(2, 1);
-  lcd.print(String(number_A) + "+" + String(number_B) + "=?");
-
+  lcd.print(String(a) + op + String(b) + "=?");
   wait_button_press();
-  uint32_t answer = number_A + number_B;
   lcd.setCursor(2, 1);
-  lcd.print(String(number_A) + "+" + String(number_B) + "=" + String(answer));
+  lcd.print(String(a) + op + String(b) + "=" + String(answer));
 }
 
-void generate_Minus() {
-  uint32_t number_A = random(Number_Limit);
-  uint32_t number_B = random(number_A);
-  lcd.setCursor(2, 0);
-  lcd.print("Math Test!");
-  lcd.setCursor(2, 1);
-  lcd.print(String(number_A) + "-" + String(number_B) + "=?");
+void generate_Plus()      { uint32_t a = random(Number_Limit), b = random(Number_Limit); generate_Arithmetic("+", a, b, a + b); }
+void generate_Minus()     { uint32_t a = random(Number_Limit), b = random(a+1); generate_Arithmetic("-", a, b, a - b); }
+void generate_Multiply()  { uint32_t a = random(10), b = random(10); generate_Arithmetic("x", a, b, a * b); }
 
-  wait_button_press();
-  uint32_t answer = number_A - number_B;
-  lcd.setCursor(2, 1);
-  lcd.print(String(number_A) + "-" + String(number_B) + "=" + String(answer));
-}
-
-void generate_Multiply() {
-  uint32_t number_A = random(Number_Limit) % 10;
-  uint32_t number_B = random(Number_Limit) % 10;
-  lcd.setCursor(2, 0);
-  lcd.print("Math Test!");
-  lcd.setCursor(2, 1);
-  lcd.print(String(number_A) + "x" + String(number_B) + "=?");
-
-  wait_button_press();
-  uint32_t answer = number_A * number_B;
-  lcd.setCursor(2, 1);
-  lcd.print(String(number_A) + "x" + String(number_B) + "=" + String(answer));
-}
 
 void setup() {
   // Initialize the LCD
