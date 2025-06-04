@@ -6,7 +6,7 @@
 #define TEST_PLUS 1
 #define TEST_MINUS 1
 #define TEST_MULTIPLY 1
-#define TEST_DIVIDE 0
+#define TEST_DIVIDE 1
 
 #define BUTTON_PIN 2  // D2
 
@@ -26,20 +26,22 @@ void wait_button_press() {
   }
 }
 
-void generate_Arithmetic(const char* op, uint32_t a, uint32_t b, uint32_t answer) {
+void generate_Arithmetic(const char* op, uint32_t a, uint32_t b, uint32_t answer, const char* type) {
+  lcd.clear();
   lcd.setCursor(2, 0);
-  lcd.print("Math Test!");
+  lcd.print(type);
   lcd.setCursor(2, 1);
   lcd.print(String(a) + op + String(b) + "=?");
   wait_button_press();
   lcd.setCursor(2, 1);
   lcd.print(String(a) + op + String(b) + "=" + String(answer));
+  wait_button_press();
 }
 
-void generate_Plus()      { uint32_t a = random(Number_Limit), b = random(Number_Limit); generate_Arithmetic("+", a, b, a + b); }
-void generate_Minus()     { uint32_t a = random(Number_Limit), b = random(a+1); generate_Arithmetic("-", a, b, a - b); }
-void generate_Multiply()  { uint32_t a = random(10), b = random(10); generate_Arithmetic("x", a, b, a * b); }
-
+void generate_Plus()      { uint32_t a = random(Number_Limit), b = random(Number_Limit); generate_Arithmetic("+", a, b, a + b, "Addition"); }
+void generate_Minus()     { uint32_t a = random(Number_Limit), b = random(a+1); generate_Arithmetic("-", a, b, a - b, "Subtraction"); }
+void generate_Multiply()  { uint32_t a = random(10), b = random(10); generate_Arithmetic("x", a, b, a * b, "Multiplication"); }
+void generate_Division()  { uint32_t a = random(10), b = random(10); generate_Arithmetic("/", a*b, b, a, "Division"); }
 
 void setup() {
   // Initialize the LCD
@@ -78,7 +80,7 @@ void setup() {
         generate_Multiply();
         break;
       case 3:
-        // generate_Divide();
+        generate_Division();
         break;
     }
   } else {
