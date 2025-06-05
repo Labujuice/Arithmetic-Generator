@@ -51,7 +51,7 @@ void generate_Multiply() {
   generate_Arithmetic("x", a, b, a * b, "Multiplication");
 }
 void generate_Division() {
-  uint32_t a = random(10), b = random(10);
+  uint32_t a = random(1,10), b = random(1,10);
   generate_Arithmetic("/", a * b, b, a, "Division");
 }
 
