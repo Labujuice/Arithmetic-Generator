@@ -64,10 +64,27 @@ You can also adjust the number range by changing:
 ```cpp
 #define Number_Limit 20
 ```
+## Housing
+![Photo](/material/IMG_4357.jpg)
 
+
+A custom enclosure has been designed specifically for this project to fit the Arduino Nano, the I2C LCD display, and the push button. The housing helps protect the electronics and provides a neat, user-friendly appearance suitable for classroom or home use.
+
+All 3D printable STL files for the enclosure are provided in the `housing` folder:
+
+- `Base.stl` – The main base of the enclosure, designed to hold the Arduino Nano and LCD securely.
+- `Cover.stl` – The top cover, which fits over the base and provides openings for the LCD and button.
+- `Button.stl` – A push button cap that fits onto the tactile switch for easier pressing.
+
+You can print these parts using any standard 3D printer. The design is optimized for Arduino Nano compatibility.
 ## File Structure
 
-- `LCD_MATH.ino` - Main Arduino sketch
+- LCD_MATH - Arduino Project folder
+  - `LCD_MATH.ino` - Main Arduino sketch
+- housing
+  - `Base.stl` - Housing base.
+  - `Cover.stl` - Upside cover.
+  - `Button.stl` - Push button
 
 ## License
 
