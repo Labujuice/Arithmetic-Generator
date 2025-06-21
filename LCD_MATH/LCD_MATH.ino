@@ -7,6 +7,7 @@
 #define TEST_MINUS 1
 #define TEST_MULTIPLY 1
 #define TEST_DIVIDE 1
+#define TEST_ODDEVEN 1
 
 #define BUTTON_PIN 2  // D2
 
@@ -14,7 +15,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 typedef void (*TestFunc)();
 
-TestFunc tests[4];
+TestFunc tests[10];
 uint8_t count = 0;
 
 void wait_button_press() {
@@ -55,6 +56,20 @@ void generate_Division() {
   generate_Arithmetic("/", a * b, b, a, "Division");
 }
 
+void generate_OddEven() {
+  uint32_t n = random(Number_Limit);
+  const char* answer = (n % 2 == 0) ? "Even" : "Odd";
+  lcd.clear();
+  lcd.setCursor(2, 0);
+  lcd.print("Odd or Even?");
+  lcd.setCursor(2, 1);
+  lcd.print(String(n) + " = ?");
+  wait_button_press();
+  lcd.setCursor(2, 1);
+  lcd.print(String(n) + " = " + answer);
+  wait_button_press();
+}
+
 void setup() {
   // Initialize the LCD
   lcd.init();
@@ -71,6 +86,7 @@ void setup() {
   if (TEST_MINUS) tests[count++] = generate_Minus;
   if (TEST_MULTIPLY) tests[count++] = generate_Multiply;
   if (TEST_DIVIDE) tests[count++] = generate_Division;
+  if (TEST_ODDEVEN) tests[count++] = generate_OddEven;
 }
 
 void loop() {

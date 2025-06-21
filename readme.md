@@ -1,10 +1,10 @@
 # Arithmetic Generator with LCD
 
-This project is an Arduino-based arithmetic quiz generator using an I2C LCD display and a push button. It randomly generates basic math problems (addition, subtraction, multiplication, and division) and displays them on the LCD. The user can reveal the answer by pressing the button.
+This project is an Arduino-based arithmetic quiz generator using an I2C LCD display and a push button. It randomly generates basic math problems (addition, subtraction, multiplication, division, and odd/even judgment) and displays them on the LCD. The user can reveal the answer by pressing the button.
 
 ## Features
 
-- Randomly generates arithmetic problems (addition, subtraction, multiplication, division)
+- Randomly generates arithmetic problems (addition, subtraction, multiplication, division, odd/even)
 - Displays problems and answers on a 16x2 I2C LCD
 - User interaction via a single push button
 - Configurable to enable/disable specific types of problems
@@ -56,6 +56,7 @@ You can enable or disable specific types of problems by changing these macros at
 #define TEST_MINUS 1
 #define TEST_MULTIPLY 1
 #define TEST_DIVIDE 1
+#define TEST_ODDEVEN 1
 ```
 Set to `1` to enable, `0` to disable.
 
